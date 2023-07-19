@@ -1,17 +1,28 @@
 .friendMessage {
-
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    /*flex-direction: column;*/
+    margin-right: 50px;
+    margin-top: 30px;
 }
 
 .friendImageAndText {
-
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .friendImageAndText img {
-
+    width: 50px;
+    height: 50px;
 }
 
 .friendText {
-
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    writing-mode: horizontal-tb;
+    justify-content: flex-end;
+    margin-right: 5px;
 }
 
 .friendText:after {
@@ -19,13 +30,16 @@
 }
 
 .friendName {
-
+    font-size: 16px;
+    font-weight:bold;
 }
 
 .friendMessageText {
-
+    font-size: 20px;
 }
 
 .friendTime {
-
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 5px;
 }
