@@ -1,2 +1,12 @@
 .container {
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+    height: 100px;
+}
+
+.superRadio {
+    display: flex;
+    flex-flow: column;
+    /*justify-content: space-between;*/
 }

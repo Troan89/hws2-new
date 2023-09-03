@@ -1,4 +1,6 @@
 .radio {
+    display: flex;
+    flex-direction: column;
 }
 
 .radio::before {
@@ -9,6 +11,10 @@
 }
 
 .label {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    /*justify-content: space-around;*/
 }
 
 .options {
