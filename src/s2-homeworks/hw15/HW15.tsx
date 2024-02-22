@@ -46,41 +46,46 @@ const HW15 = () => {
     const [totalCount, setTotalCount] = useState(100)
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
-
     const sendQuery = (params: any) => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
-                // делает студент
 
-                // сохранить пришедшие данные
-
-                //
+                if (res?.data) {
+                    setTotalCount(res.data.totalCount)
+                    setTechs(res.data.techs)
+                    setLoading(false)
+                    console.log('await')
+                }
             })
     }
-
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
-
-        // setPage(
-        // setCount(
-
-        // sendQuery(
         // setSearchParams(
-
+        setSearchParams({
+            sort: sort, page: newPage.toString(), count: newCount.toString()
+        })
+        // setPage(
+        setPage(newPage)
+        // setCount(
+        setCount(newCount)
+        // sendQuery(
+        sendQuery({sort: sort, page: newPage.toString(), count: newCount.toString()})
         //
     }
 
     const onChangeSort = (newSort: string) => {
+        console.log(newSort)
+        setSearchParams({
+            sort: newSort, page: '1', count: count.toString()
+        })
         // делает студент
+        setSort(newSort)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
+        sendQuery( {
+            sort: newSort, page: '1', count: count.toString()
+        })
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
     }
 
     useEffect(() => {
@@ -89,6 +94,17 @@ const HW15 = () => {
         setPage(+params.page || 1)
         setCount(+params.count || 4)
     }, [])
+
+
+    // if (sort === '1tech') {
+    //     techs.sort((a, b) => a.tech > b.tech ? 1 : -1)
+    // } else if (sort === '0tech') {
+    //     techs.sort((a, b) => a.tech < b.tech ? 1 : -1)
+    // } else if (sort === '1developer') {
+    //     techs.sort((a, b) => a.developer > b.developer ? 1 : -1)
+    // } else if (sort === '0developer') {
+    //     techs.sort((a, b) => a.developer < b.developer ? 1 : -1)
+    // }
 
     const mappedTechs = techs.map(t => (
         <div key={t.id} className={s.row}>
@@ -101,6 +117,7 @@ const HW15 = () => {
             </div>
         </div>
     ))
+
 
     return (
         <div id={'hw15'}>

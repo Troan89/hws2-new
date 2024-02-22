@@ -16,6 +16,7 @@ export type UserType = {
     name: string
     age: number
 }
+export type CurrentSortType = 'up' | 'down' | '18' | ''
 
 const initialPeople: UserType[] = [
     // студенты могут поменять имя/возраст/количество объектов, _id должны быть целочисленные
@@ -29,13 +30,13 @@ const initialPeople: UserType[] = [
 
 const HW8 = () => {
     const [people, setPeople] = useState<UserType[]>(initialPeople)
-    const [currentSort, setCurrentSort] = useState('')
+    const [currentSort, setCurrentSort] = useState<CurrentSortType>('')
 
     const finalPeople = people.map((u: UserType) => <User key={u._id} u={u}/>)
 
     const sortUp = () => {
         setPeople(
-            homeWorkReducer(initialPeople, {type: 'sort', payload: 'up'})
+            homeWorkReducer(initialPeople, {type: 'sort', payload: 'up'} as const)
         ) // в алфавитном порядке a.name > b.name
         setCurrentSort('up')
     }
